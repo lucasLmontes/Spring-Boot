@@ -4,13 +4,14 @@ import com.academify.model.entity.Banda;
 import com.academify.model.repository.BandaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BandaService {
-    private BandaRepository bandaRepository;
+    private final BandaRepository bandaRepository;
 
     public BandaService(BandaRepository bandaRepository) {
         this.bandaRepository = bandaRepository;
@@ -71,8 +72,8 @@ public class BandaService {
             banda.setAtividadeBanda(true);
         }
 
-        if (banda.getPaisOrigem() == null){
-            throw new Exception("A banda deve possuir um país de origem.");
+        if (banda.getPaisOrigem() == null || banda.getPaisOrigem().length() < 3){
+            throw new Exception("País de origem de uma banda deve possuir pelo menos três caracteres.");
         }
 
         if (!banda.getPaisOrigem().matches("[A-Za-z+]")){
@@ -85,7 +86,7 @@ public class BandaService {
         }
 
         if (banda.getRegistroBanda().length() != 5){
-            throw new Exception("O registro de uma banda deve conter cinco caracteres");
+            throw new Exception("O registro de uma banda deve conter cinco caracteres.");
         }
 
         if (!banda.getRegistroBanda().matches("^[A-Z]{2}[0-9]{3}$")){
@@ -93,7 +94,15 @@ public class BandaService {
         }
 
         if (banda.getQuantidadeIntegrantes() < 3){
-            throw new Exception("A banda deve ter pelo menos três integrantes");
+            throw new Exception("A banda deve ter pelo menos três integrantes.");
+        }
+
+        if (banda.getSingleDestaque() == null){
+            throw new Exception("Single destaque é obrigatório.");
+        }
+
+        if (banda.getAlbumDestaque() == null){
+            throw new Exception("Álbum destaque é obrigatório.");
         }
 
         return bandaRepository.save(banda);

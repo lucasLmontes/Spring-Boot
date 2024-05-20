@@ -27,6 +27,10 @@ public class Banda {
     private String singleDestaque;
     private String albumDestaque;
 
+    @ManyToOne
+    @JoinColumn(name = "nome_estilo_musical", referencedColumnName = "nome")
+    private EstiloMusical estiloMusical;
+
     public Long getId() {
         return id;
     }
@@ -113,5 +117,13 @@ public class Banda {
 
     public void setAlbumDestaque(String albumDestaque) {
         this.albumDestaque = albumDestaque;
+    }
+
+    public EstiloMusical getEstiloMusical() {
+        return estiloMusical;
+    }
+
+    public void setEstiloMusical(EstiloMusical estiloMusical) {
+        this.estiloMusical = estiloMusical;
     }
 }
