@@ -16,10 +16,10 @@ public class Banda {
     private Boolean atividadeBanda;
     private int quantidadeMusicas;
 
-    @DateTimeFormat(pattern = "AAAA")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date dataCriacao;
 
-    @DateTimeFormat(pattern = "AAAA")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date dataDissolucao;
     private String paisOrigem;
     private String registroBanda;

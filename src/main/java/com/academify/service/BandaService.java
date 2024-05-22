@@ -71,8 +71,8 @@ public class BandaService {
             throw new Exception("País de origem de uma banda deve possuir pelo menos três caracteres.");
         }
 
-        Banda registro = bandaRepository.findByNome(banda.getNome());
-        if (registro != null && !registro.getId().equals(banda.getId())){
+        Banda registro = bandaRepository.findByNome(banda.getRegistroBanda());
+        if (registro != null && !bandaCriada.getId().equals(banda.getId())){
             throw new Exception("Já existe uma banda com esse registro.");
         }
 

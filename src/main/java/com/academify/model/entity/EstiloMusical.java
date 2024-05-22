@@ -23,7 +23,7 @@ public class EstiloMusical {
     private String paisOrigem;
     private String paisMaiorPopularidade;
 
-    @DateTimeFormat(pattern = "AAAA")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date anoSurgimento;
 
     @OneToMany(mappedBy = "estiloMusical", cascade = CascadeType.ALL, orphanRemoval = true)
