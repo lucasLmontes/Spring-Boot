@@ -16,7 +16,7 @@ public class Banda {
     private Boolean atividadeBanda;
     private int quantidadeMusicas;
 
-    @DateTimeFormat(pattern = "DD/MM/AAAA")
+    @DateTimeFormat(pattern = "AAAA")
     private Date dataCriacao;
 
     @DateTimeFormat(pattern = "AAAA")
@@ -27,8 +27,8 @@ public class Banda {
     private String singleDestaque;
     private String albumDestaque;
 
-    @ManyToOne
-    @JoinColumn(name = "nome_estilo_musical", referencedColumnName = "nome")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "estiloMusical_id", nullable = false)
     private EstiloMusical estiloMusical;
 
     public Long getId() {

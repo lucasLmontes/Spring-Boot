@@ -1,13 +1,11 @@
 package com.academify.controller;
 
 import com.academify.model.entity.Banda;
+import com.academify.model.entity.EstiloMusical;
 import com.academify.service.BandaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/banda")
@@ -18,12 +16,12 @@ public class BandaController {
         this.bandaService = bandaService;
     }
 
-    @GetMapping("/encontrar")
+    @GetMapping()
     public ResponseEntity findAll(){
         return ResponseEntity.ok(bandaService.findAll());
     }
 
-    @PostMapping("/incluir")
+    @PostMapping()
     public ResponseEntity save(@RequestBody Banda banda){
         try{
             return ResponseEntity.ok(bandaService.save(banda));
@@ -33,7 +31,7 @@ public class BandaController {
         }
     }
 
-    @PutMapping("/editar")
+    @PutMapping()
     public ResponseEntity edit(@RequestBody Banda banda){
         try{
             return ResponseEntity.ok(bandaService.save(banda));
@@ -43,7 +41,7 @@ public class BandaController {
         }
     }
 
-    @GetMapping("/encontrar/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable("id") Long id){
         try{
             return ResponseEntity.ok(bandaService.findById(id));
@@ -53,7 +51,7 @@ public class BandaController {
         }
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id){
         try{
             return ResponseEntity.ok(bandaService.delete(id));
@@ -63,19 +61,8 @@ public class BandaController {
         }
     }
 
-    @GetMapping("/contagem")
+    @GetMapping("/total")
     public ResponseEntity count(){
         return ResponseEntity.ok(bandaService.count());
-    }
-
-    @GetMapping("/encontrar/estilo/{estiloMusical}")
-    public ResponseEntity getEstiloMusical(@PathVariable("estiloMusical") String estiloMusical){
-        List<Banda> bandas = new ArrayList<>();
-        for (Banda banda : bandaService.findAll()) {
-            if (banda.getEstiloMusical() != null && banda.getEstiloMusical().getNome().equals(estiloMusical)) {
-                bandas.add(banda);
-            }
-        }
-        return ResponseEntity.ok(bandas);
     }
 }

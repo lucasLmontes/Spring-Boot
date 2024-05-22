@@ -15,12 +15,12 @@ public class EstiloMusicalController {
         this.estiloMusicalService = estiloMusicalService;
     }
 
-    @GetMapping("/encontrar")
+    @GetMapping()
     public ResponseEntity findAll(){
         return ResponseEntity.ok(estiloMusicalService.findAll());
     }
 
-    @PostMapping("/incluir")
+    @PostMapping()
     public ResponseEntity save(@RequestBody EstiloMusical estiloMusical){
         try{
             return ResponseEntity.ok(estiloMusicalService.save(estiloMusical));
@@ -30,7 +30,7 @@ public class EstiloMusicalController {
         }
     }
 
-    @PutMapping("/editar")
+    @PutMapping()
     public ResponseEntity edit(@RequestBody EstiloMusical estiloMusical){
         try{
             return ResponseEntity.ok(estiloMusicalService.save(estiloMusical));
@@ -40,7 +40,7 @@ public class EstiloMusicalController {
         }
     }
 
-    @GetMapping("/encontrar/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable("id") Long id){
         try{
             return ResponseEntity.ok(estiloMusicalService.findById(id));
@@ -50,7 +50,7 @@ public class EstiloMusicalController {
         }
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id){
         try{
             return ResponseEntity.ok(estiloMusicalService.delete(id));
@@ -60,7 +60,7 @@ public class EstiloMusicalController {
         }
     }
 
-    @GetMapping("/contagem")
+    @GetMapping("/total")
     public ResponseEntity count(){
         return ResponseEntity.ok(estiloMusicalService.count());
     }

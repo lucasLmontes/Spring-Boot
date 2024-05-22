@@ -30,29 +30,12 @@ public class EstiloMusicalService {
     }
 
     public EstiloMusical save(EstiloMusical estiloMusical) throws Exception{
-        if (!estiloMusical.getNome().matches("[A-Za-z+]")){
-            throw new Exception("O nome do estilo musical deve possuir apenas letras.");
-        }
-
         if (estiloMusical.getNome() == null || estiloMusical.getNome().length() < 3){
             throw new Exception("O nome do estilo musical deve ter pelo menos três caracteres.");
         }
 
-        EstiloMusical estiloCriado = estiloMusicalRepository.findByNome(estiloMusical.getNome());
-        if (estiloCriado != null && !estiloCriado.getId().equals(estiloMusical.getId())){
-            throw new Exception("Já existe um estilo musical com o mesmo nome.");
-        }
-
-        if (!estiloMusical.getFiguraImportante().matches("[A-Za-z+]")){
-            throw new Exception("A figura importante do estilo musical deve possuir apenas letras.");
-        }
-
         if (estiloMusical.getFiguraImportante() == null){
             throw new Exception("É obrigatório haver figura importante.");
-        }
-
-        if (!estiloMusical.getInstrumentoPrincipal().matches("[A-Za-z+]")){
-            throw new Exception("O instrumento principal do estilo musical deve possuir apenas letras.");
         }
 
         if (estiloMusical.getInstrumentoPrincipal() == null){
@@ -61,10 +44,6 @@ public class EstiloMusicalService {
 
         if (estiloMusical.getPaisOrigem() == null || estiloMusical.getPaisOrigem().length() < 3){
             throw new Exception("País de origem de um estilo musical deve possuir pelo menos três caracteres.");
-        }
-
-        if (!estiloMusical.getPaisOrigem().matches("[A-Za-z+]")){
-            throw new Exception("O país de origem de um estilo musical deve possuir apenas letras.");
         }
 
         if (estiloMusical.getAnoSurgimento() != null){

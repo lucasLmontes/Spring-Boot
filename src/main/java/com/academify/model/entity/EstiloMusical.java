@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "estilo-musical")
@@ -25,8 +26,8 @@ public class EstiloMusical {
     @DateTimeFormat(pattern = "AAAA")
     private Date anoSurgimento;
 
-    @OneToMany(mappedBy = "estiloMusical")
-    private List<Banda> banda;
+    @OneToMany(mappedBy = "estiloMusical", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Banda> banda = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -90,13 +91,5 @@ public class EstiloMusical {
 
     public void setAnoSurgimento(Date anoSurgimento) {
         this.anoSurgimento = anoSurgimento;
-    }
-
-    public List<Banda> getBanda() {
-        return banda;
-    }
-
-    public void setBanda(List<Banda> banda) {
-        this.banda = banda;
     }
 }

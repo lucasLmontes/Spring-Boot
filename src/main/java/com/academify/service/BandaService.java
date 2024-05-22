@@ -4,7 +4,6 @@ import com.academify.model.entity.Banda;
 import com.academify.model.repository.BandaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -30,10 +29,6 @@ public class BandaService {
     }
 
     public Banda save(Banda banda) throws Exception{
-        if (!banda.getNome().matches("[A-Za-z+]")){
-            throw new Exception("O nome da banda deve possuir apenas letras.");
-        }
-
         if (banda.getNome() == null || banda.getNome().length() < 3){
             throw new Exception("O nome deve possuir pelo menos três caracteres.");
         }
@@ -74,10 +69,6 @@ public class BandaService {
 
         if (banda.getPaisOrigem() == null || banda.getPaisOrigem().length() < 3){
             throw new Exception("País de origem de uma banda deve possuir pelo menos três caracteres.");
-        }
-
-        if (!banda.getPaisOrigem().matches("[A-Za-z+]")){
-            throw new Exception("O país de origem de uma banda deve possuir apenas letras.");
         }
 
         Banda registro = bandaRepository.findByNome(banda.getNome());
