@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BandaRepository extends JpaRepository<Banda, Long> {
     Banda findByNome(String nome);
+    Banda findByRegistroBanda(String registroBanda);
 }
