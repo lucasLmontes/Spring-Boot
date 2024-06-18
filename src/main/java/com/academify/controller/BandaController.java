@@ -1,7 +1,6 @@
 package com.academify.controller;
 
 import com.academify.model.entity.Banda;
-import com.academify.model.entity.EstiloMusical;
 import com.academify.service.BandaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
