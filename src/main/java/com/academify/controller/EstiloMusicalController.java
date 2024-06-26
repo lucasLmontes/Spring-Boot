@@ -30,12 +30,16 @@ public class EstiloMusicalController {
         }
     }
 
-    @PutMapping()
-    public ResponseEntity edit(@RequestBody EstiloMusical estiloMusical){
-        try{
+    @PutMapping("/{id}")
+    public ResponseEntity edit(@PathVariable("id") Long id, @RequestBody EstiloMusical estiloMusical) {
+        try {
+            EstiloMusical existingEstilo = estiloMusicalService.findById(id);
+            if (existingEstilo == null) {
+                return new ResponseEntity("Estilo musical não encontrado", HttpStatus.NOT_FOUND);
+            }
+            estiloMusical.setId(id);  // Assegura que o ID do estilo sendo atualizado é o mesmo do caminho
             return ResponseEntity.ok(estiloMusicalService.save(estiloMusical));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

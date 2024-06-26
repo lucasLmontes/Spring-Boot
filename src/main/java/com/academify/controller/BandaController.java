@@ -30,9 +30,10 @@ public class BandaController {
         }
     }
 
-    @PutMapping()
-    public ResponseEntity edit(@RequestBody Banda banda){
+    @PutMapping("/{id}")
+    public ResponseEntity edit(@PathVariable("id") Long id, @RequestBody Banda banda){
         try{
+            banda.setId(id );
             return ResponseEntity.ok(bandaService.save(banda));
         }
         catch (Exception e){
